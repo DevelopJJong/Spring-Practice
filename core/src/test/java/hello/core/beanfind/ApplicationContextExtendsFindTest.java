@@ -44,7 +44,6 @@ public class ApplicationContextExtendsFindTest {
     @DisplayName("부모 타입으로 모두 조회하기")
     void findAllBeanByParentType(){
         Map<String, DiscountPolicy> beansOfType = ac.getBeansOfType(DiscountPolicy.class);
-        assertThat(beansOfType)
     }
 
     @Configuration
