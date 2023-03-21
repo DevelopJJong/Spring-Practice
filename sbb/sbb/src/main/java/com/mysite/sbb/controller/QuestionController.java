@@ -3,6 +3,7 @@ package com.mysite.sbb.controller;
 import java.util.List;
 
 import com.mysite.sbb.domain.Question;
+import com.mysite.sbb.form.AnswerForm;
 import com.mysite.sbb.form.QuestionForm;
 import com.mysite.sbb.repository.QuestionRepository;
 import com.mysite.sbb.service.QuestionService;
@@ -29,7 +30,7 @@ public class QuestionController {
     }
 
     @GetMapping("/detail/{id}")
-    public String detail(Model model, @PathVariable Integer id) {
+    public String detail(Model model, @PathVariable Integer id, AnswerForm answerForm) {
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
         return "question_detail";

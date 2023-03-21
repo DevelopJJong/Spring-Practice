@@ -25,6 +25,10 @@ public class Question {
 
     private LocalDateTime createDate;
 
+    /**
+     * cascade = CascadeType.REMOVE < 부모엔티티가 삭제되면 같이 삭제되어야 해서 넣은 부분
+     */
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
+
 }
