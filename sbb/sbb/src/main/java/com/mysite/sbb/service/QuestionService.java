@@ -36,4 +36,7 @@ public class QuestionService {
         q.setCreateDate(LocalDateTime.now());
         this.questionRepository.save(q);
     }
+    public void delete(Integer id){
+       questionRepository.deleteById(id);
+    }
 }
