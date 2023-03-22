@@ -8,6 +8,7 @@ import com.mysite.sbb.form.QuestionForm;
 import com.mysite.sbb.repository.QuestionRepository;
 import com.mysite.sbb.service.QuestionService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,15 +24,15 @@ public class QuestionController {
     private final QuestionService questionService;
 
     @GetMapping("/list")
-    public String list(Model model) {
-        List<Question> questionList = this.questionService.getList();
-        model.addAttribute("questionList", questionList);
+    public String list(Model model, @RequestParam(value="page", defaultValue="0") int page) {
+        Page<Question> paging = questionService.getList(page);
+        model.addAttribute("paging", paging);
         return "question_list";
     }
 
     @GetMapping("/detail/{id}")
     public String detail(Model model, @PathVariable Integer id, AnswerForm answerForm) {
-        Question question = this.questionService.getQuestion(id);
+        Question question = questionService.getQuestion(id);
         model.addAttribute("question", question);
         return "question_detail";
     }
